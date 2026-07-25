@@ -1,0 +1,6 @@
+{
+  "name": "Himalayan Haven Retreat",
+  "description": "Boutique luxury hotel landing page offering mountain suites, fine dining, yoga, and panoramic views above the clouds in Sarangkot, Nepal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

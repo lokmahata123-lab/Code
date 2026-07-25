@@ -1,0 +1,121 @@
+{
+  "entities": {
+    "Reservation": {
+      "title": "Reservation",
+      "description": "Guest room reservation request for Himalayan Haven Retreat",
+      "type": "object",
+      "properties": {
+        "guestName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100,
+          "description": "Full name of the guest"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 120,
+          "description": "Contact email address"
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 30,
+          "description": "Phone or WhatsApp contact number"
+        },
+        "roomType": {
+          "type": "string",
+          "maxLength": 80,
+          "description": "Suite category selected"
+        },
+        "checkIn": {
+          "type": "string",
+          "maxLength": 20,
+          "description": "Requested check-in date"
+        },
+        "nights": {
+          "type": "integer",
+          "description": "Number of nights requested"
+        },
+        "guests": {
+          "type": "integer",
+          "description": "Number of guests"
+        },
+        "specialRequests": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Optional special requests or dietary needs"
+        },
+        "estimatedTotalUSD": {
+          "type": "number",
+          "description": "Estimated total cost in USD"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "confirmed", "cancelled"],
+          "description": "Status of reservation"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when reservation was placed"
+        }
+      },
+      "required": ["guestName", "email", "phone", "roomType", "checkIn", "nights", "guests", "status"]
+    },
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "Dining reservation or general guest contact inquiry",
+      "type": "object",
+      "properties": {
+        "guestName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100,
+          "description": "Name of inquirer"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 120,
+          "description": "Email address"
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 30,
+          "description": "Optional contact phone"
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Inquiry message or dining request detail"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["dining", "general"],
+          "description": "Inquiry category"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when created"
+        }
+      },
+      "required": ["guestName", "email", "type"]
+    }
+  },
+  "firestore": {
+    "/reservations/{reservationId}": {
+      "schema": {
+        "$ref": "#/entities/Reservation"
+      },
+      "description": "Collection storing all retreat room reservations"
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": {
+        "$ref": "#/entities/Inquiry"
+      },
+      "description": "Collection storing guest dining reservations and contact messages"
+    }
+  }
+}
